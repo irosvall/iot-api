@@ -8,6 +8,9 @@ import logger from 'morgan'
 import {router} from './routes/router'
 import {HttpError} from "./models/errors/http-error";
 
+/**
+ * The main function to start the program.
+ */
 const main = async () => {
     const app: Application = express()
 
