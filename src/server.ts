@@ -27,27 +27,27 @@ const main = async () => {
     app.use('/', router)
 
     // Error handler.
-    app.use(function (err: HttpError, req: Request, res: Response, next: NextFunction) {
-        err.status = err.status || 500
+    app.use(function (error: HttpError, req: Request, res: Response, next: NextFunction) {
+        error.status = error.status || 500
 
         if (req.app.get('env') !== 'development') {
             res
-                .status(err.status)
+                .status(error.status)
                 .json({
-                    status: err.status,
-                    message: err.message
+                    status: error.status,
+                    message: error.message
                 })
             return
         }
 
         // Providing detailed error in development.
         return res
-            .status(err.status)
+            .status(error.status)
             .json({
-                status: err.status,
-                message: err.message,
-                innerException: err.innerException,
-                stack: err.stack
+                status: error.status,
+                message: error.message,
+                innerException: error.innerException,
+                stack: error.stack
             })
     })
 
